@@ -1,0 +1,40 @@
+name: update-now
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 13:00 UTC = 06:00 PT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Refresh NOW cards
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          LASTFM_USER:    ${{ secrets.LASTFM_USER }}
+        run: node scripts/update-now.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name  'doyle-bot'
+          git config user.email 'bot@doyled-it.com'
+          git add assets/now-writing.svg assets/now-listening.svg data/now.json
+          if git diff --quiet --staged; then
+            echo "no changes; skipping commit"
+            exit 0
+          fi
+          git commit -m 'chore(now): refresh now cards'
+          git push
