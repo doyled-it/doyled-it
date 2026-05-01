@@ -7,7 +7,6 @@
   <a href="https://github.com/doyled-it/claude-vault-skills"><img src="assets/work-claude-vault-skills.svg" alt="claude-vault-skills — Claude Code skill suite for an Obsidian vault productivity system"></a>
   <a href="https://github.com/janus-llm/janus-llm"><img src="assets/work-janus-llm.svg" alt="janus-llm — LLM-powered code modernization via chunking, iterative prompting, and RAG"></a>
   <a href="https://github.com/mitrefireline/simfire"><img src="assets/work-simfire.svg" alt="simfire — open-source wildfire simulator for training reinforcement learning agents"></a>
-  <a href="https://github.com/doyled-it/leftovers"><img src="assets/work-leftovers.svg" alt="leftovers — on-device inspector for what Google still has on you (v0.1 / wip)"></a>
 </p>
 
 <img src="assets/stack.svg" alt="stack: python · typescript · claude · langgraph · cloudflare">

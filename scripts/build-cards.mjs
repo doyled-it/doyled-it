@@ -100,7 +100,6 @@ const workAgentView = workCard(png.agentView, "agent-view", "OpenTUI terminal in
 const workVault     = workCard(png.vault,     "claude-vault-skills", "Claude Code skill suite for an Obsidian vault productivity system");
 const workJanus     = workCard(png.janus,     "janus-llm", "LLM-powered code modernization via chunking, iterative prompting, and RAG");
 const workSimfire   = workCard(png.simfire,   "simfire", "open-source wildfire simulator for training reinforcement learning agents");
-const workLeftovers = workCard(png.leftovers, "leftovers", "on-device inspector for what Google still has on you (v0.1 / wip)");
 
 // === Per-link mini cards for "elsewhere" (5 across) ===
 // Each 170x140 with icon centered + label.
@@ -154,7 +153,6 @@ const written = [
   ["work-claude-vault-skills.svg", workVault],
   ["work-janus-llm.svg",           workJanus],
   ["work-simfire.svg",             workSimfire],
-  ["work-leftovers.svg",           workLeftovers],
   ["else-doyled-it.svg",           elseSite],
   ["else-music.svg",               elseMusic],
   ["else-card.svg",                elseCard],
