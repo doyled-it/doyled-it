@@ -1,5 +1,9 @@
-// Builds five self-contained card SVGs by inlining the PNG sprites as base64.
-// Run via `npm run build:cards`. Output goes to assets/.
+// Builds card SVGs for the GitHub profile README.
+// Each section's link-bearing items become per-item mini cards (one SVG file each)
+// that the README wraps in markdown links so every card is one click target.
+//
+// Output: assets/<name>.svg (one per card).
+// Run via `npm run build:cards`.
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -19,7 +23,7 @@ const png = {
   baseball:    dataUri("baseball.png"),
   golfBag:     dataUri("golf-bag.png"),
   vinyl:       dataUri("vinyl.png"),
-  pencil:      dataUri("pencil.png"),
+  archery:     dataUri("icon-archery.png"),
   python:      dataUri("logo-python.png"),
   typescript:  dataUri("logo-typescript.png"),
   claude:      dataUri("logo-claude.png"),
@@ -28,6 +32,12 @@ const png = {
   agentView:   dataUri("icon-agent-view.png"),
   vault:       dataUri("icon-vault.png"),
   leftovers:   dataUri("icon-leftovers.png"),
+  janus:       dataUri("icon-janus.png"),
+  simfire:     dataUri("icon-simfire.png"),
+  mac:         dataUri("icon-mac.png"),
+  bubble:      dataUri("icon-bubble.png"),
+  linkedin:    dataUri("icon-linkedin.png"),
+  envelope:    dataUri("icon-envelope.png"),
 };
 
 const FONT = `font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace"`;
@@ -45,6 +55,7 @@ function chip(x, y, label, sprite) {
 
 const today = new Date().toISOString().slice(0, 10);
 
+// === Hero (one big card, no per-chip linking) ===
 const hero = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" width="880" height="380" ${FONT}>
   <rect x="12" y="14" width="864" height="360" fill="#2b1d12"/>
   <rect x="4" y="6" width="864" height="360" fill="#fbe9d7" stroke="#2b1d12" stroke-width="6"/>
@@ -55,7 +66,7 @@ const hero = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" widt
     ${chip(0, 0,     "baseball", png.baseball)}
     ${chip(196, 0,   "golf",     png.golfBag)}
     ${chip(0, 156,   "music",    png.vinyl)}
-    ${chip(196, 156, "words",    png.pencil)}
+    ${chip(196, 156, "archery",  png.archery)}
   </g>
   <text x="430" y="146" font-size="48" font-weight="800" fill="#2b1d12" letter-spacing="-0.5">Michael</text>
   <text x="430" y="200" font-size="48" font-weight="800" fill="#2b1d12" letter-spacing="-0.5">Doyle</text>
@@ -68,42 +79,51 @@ const hero = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" widt
 </svg>
 `;
 
-const nowShipping = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 200" width="880" height="200" ${FONT}>
-  <rect x="12" y="14" width="864" height="180" fill="#2b1d12"/>
-  <rect x="4" y="6" width="864" height="180" fill="#fbe9d7" stroke="#2b1d12" stroke-width="6"/>
-  <rect x="4" y="6" width="864" height="34" fill="#2b1d12"/>
-  <text x="20" y="28" font-size="14" fill="#fbe9d7" letter-spacing="1.5">▸ now / shipping</text>
-  <g font-size="14" fill="#2b1d12">
-    <text x="32" y="76"><tspan font-weight="700">complicit.work</tspan> v1.0.0 — quietly out</text>
-    <text x="32" y="106"><tspan font-weight="700">doyled-it.com</tspan> — pastel HyperCard refresh ongoing</text>
-    <text x="32" y="136"><tspan font-weight="700">agent-view</tspan> — terminal UI for Claude Code agent sessions</text>
-  </g>
+// === Per-project mini cards for "selected work" (3 across) ===
+// Each card 260x180 with icon at top, name and short blurb below.
+function workCard(icon, name, blurb) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" width="260" height="200" ${FONT}>
+  <rect x="6" y="6" width="252" height="190" fill="#2b1d12"/>
+  <rect width="252" height="190" fill="#fbe9d7" stroke="#2b1d12" stroke-width="3"/>
+  <rect width="252" height="26" fill="#2b1d12"/>
+  <text x="14" y="19" font-size="12" fill="#fbe9d7" letter-spacing="1">▸ ${name}</text>
+  <image href="${icon}" x="106" y="42" width="48" height="48" ${PIX}/>
+  <text x="126" y="116" font-size="14" font-weight="700" text-anchor="middle" fill="#1a4f8a">${name}</text>
+  <foreignObject x="14" y="124" width="232" height="64">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font: 11px ui-monospace,'SFMono-Regular',Menlo,monospace; color:#2b1d12; text-align:center; line-height:1.4;">${blurb}</div>
+  </foreignObject>
 </svg>
 `;
-
-function workRow(yOffset, icon, name, desc, italic) {
-  const tail = italic
-    ? `${desc} <tspan font-style="italic" fill="#6b5840">${italic}</tspan>`
-    : desc;
-  return `
-  <g transform="translate(32, ${yOffset})">
-    <image href="${icon}" width="48" height="48" ${PIX}/>
-    <text x="64" y="22" font-size="15" font-weight="700" fill="#1a4f8a">${name}</text>
-    <text x="64" y="44" font-size="13" fill="#2b1d12">${tail}</text>
-  </g>`;
 }
 
-const selectedWork = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 280" width="880" height="280" ${FONT}>
-  <rect x="12" y="14" width="864" height="260" fill="#2b1d12"/>
-  <rect x="4" y="6" width="864" height="260" fill="#fbe9d7" stroke="#2b1d12" stroke-width="6"/>
-  <rect x="4" y="6" width="864" height="34" fill="#2b1d12"/>
-  <text x="20" y="28" font-size="14" fill="#fbe9d7" letter-spacing="1.5">▸ selected work</text>
-  ${workRow(56,  png.agentView, "agent-view",          "OpenTUI-based terminal interface for managing AI coding agent sessions", "")}
-  ${workRow(124, png.vault,     "claude-vault-skills", "Claude Code skill suite for an Obsidian vault productivity system", "")}
-  ${workRow(192, png.leftovers, "leftovers",           "on-device inspector for what Google still has on you after opting out", "(v0.1 / wip)")}
+const workAgentView = workCard(png.agentView, "agent-view", "OpenTUI terminal interface for Claude Code agent sessions");
+const workVault     = workCard(png.vault,     "claude-vault-skills", "Claude Code skill suite for an Obsidian vault productivity system");
+const workJanus     = workCard(png.janus,     "janus-llm", "LLM-powered code modernization via chunking, iterative prompting, and RAG");
+const workSimfire   = workCard(png.simfire,   "simfire", "open-source wildfire simulator for training reinforcement learning agents");
+const workLeftovers = workCard(png.leftovers, "leftovers", "on-device inspector for what Google still has on you (v0.1 / wip)");
+
+// === Per-link mini cards for "elsewhere" (5 across) ===
+// Each 170x140 with icon centered + label.
+function elsewhereCard(icon, label, sublabel = "") {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 140" width="170" height="140" ${FONT}>
+  <rect x="6" y="6" width="162" height="130" fill="#2b1d12"/>
+  <rect width="162" height="130" fill="#fbe9d7" stroke="#2b1d12" stroke-width="3"/>
+  <rect width="162" height="22" fill="#2b1d12"/>
+  <text x="11" y="16" font-size="10" fill="#fbe9d7" letter-spacing="1">▸ ${label}</text>
+  <image href="${icon}" x="61" y="34" width="48" height="48" ${PIX}/>
+  <text x="85" y="100" font-size="13" font-weight="700" text-anchor="middle" fill="#1a4f8a">${label}</text>
+  ${sublabel ? `<text x="85" y="118" font-size="9" text-anchor="middle" fill="#6b5840" letter-spacing="0.5">${sublabel}</text>` : ""}
 </svg>
 `;
+}
 
+const elseSite     = elsewhereCard(png.mac,      "doyled-it.com", "personal site");
+const elseMusic    = elsewhereCard(png.vinyl,    "music",         "chart · recent");
+const elseCard     = elsewhereCard(png.bubble,   "card",          "chat with bio");
+const elseLinkedIn = elsewhereCard(png.linkedin, "linkedin",      "michaeldoyleml");
+const elseEmail    = elsewhereCard(png.envelope, "email",         "say hi");
+
+// === Stack (one big card, no per-badge linking) ===
 function stackTile(x, label, sprite) {
   return `
     <g transform="translate(${x},0)">
@@ -128,26 +148,19 @@ const stack = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 130" wid
 </svg>
 `;
 
-const elsewhere = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" width="880" height="220" ${FONT}>
-  <rect x="12" y="14" width="864" height="200" fill="#2b1d12"/>
-  <rect x="4" y="6" width="864" height="200" fill="#fbe9d7" stroke="#2b1d12" stroke-width="6"/>
-  <rect x="4" y="6" width="864" height="34" fill="#2b1d12"/>
-  <text x="20" y="28" font-size="14" fill="#fbe9d7" letter-spacing="1.5">▸ elsewhere</text>
-  <g font-size="14" fill="#2b1d12">
-    <text x="32" y="72"><tspan font-weight="700" fill="#1a4f8a">doyled-it.com</tspan> — personal site</text>
-    <text x="32" y="102"><tspan font-weight="700" fill="#1a4f8a">music</tspan> — chart, recent, top</text>
-    <text x="32" y="132"><tspan font-weight="700" fill="#1a4f8a">card</tspan> — chat with my bio</text>
-    <text x="32" y="162"><tspan font-weight="700" fill="#1a4f8a">contact</tspan></text>
-  </g>
-</svg>
-`;
-
 const written = [
-  ["hero.svg",          hero],
-  ["now-shipping.svg",  nowShipping],
-  ["selected-work.svg", selectedWork],
-  ["stack.svg",         stack],
-  ["elsewhere.svg",     elsewhere],
+  ["hero.svg",                     hero],
+  ["work-agent-view.svg",          workAgentView],
+  ["work-claude-vault-skills.svg", workVault],
+  ["work-janus-llm.svg",           workJanus],
+  ["work-simfire.svg",             workSimfire],
+  ["work-leftovers.svg",           workLeftovers],
+  ["else-doyled-it.svg",           elseSite],
+  ["else-music.svg",               elseMusic],
+  ["else-card.svg",                elseCard],
+  ["else-linkedin.svg",            elseLinkedIn],
+  ["else-email.svg",               elseEmail],
+  ["stack.svg",                    stack],
 ];
 for (const [name, body] of written) {
   writeFileSync(path.join(out, name), body, "utf8");
