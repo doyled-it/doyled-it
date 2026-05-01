@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" width="880" height="220" font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace">
+  <rect x="12" y="14" width="864" height="200" fill="#2b1d12"/>
+  <rect x="4" y="6" width="864" height="200" fill="#fbe9d7" stroke="#2b1d12" stroke-width="6"/>
+  <rect x="4" y="6" width="864" height="34" fill="#2b1d12"/>
+  <text x="20" y="28" font-size="14" fill="#fbe9d7" letter-spacing="1.5">▸ elsewhere</text>
+  <g font-size="14" fill="#2b1d12">
+    <text x="32" y="72"><tspan font-weight="700" fill="#1a4f8a">doyled-it.com</tspan> — personal site</text>
+    <text x="32" y="102"><tspan font-weight="700" fill="#1a4f8a">music</tspan> — chart, recent, top</text>
+    <text x="32" y="132"><tspan font-weight="700" fill="#1a4f8a">card</tspan> — chat with my bio</text>
+    <text x="32" y="162"><tspan font-weight="700" fill="#1a4f8a">contact</tspan></text>
+  </g>
+</svg>
