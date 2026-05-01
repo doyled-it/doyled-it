@@ -60,7 +60,7 @@ const hero = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" widt
   <text x="430" y="146" font-size="48" font-weight="800" fill="#2b1d12" letter-spacing="-0.5">Michael</text>
   <text x="430" y="200" font-size="48" font-weight="800" fill="#2b1d12" letter-spacing="-0.5">Doyle</text>
   <text x="430" y="232" font-size="13" fill="#2b1d12">lead ai research engineer</text>
-  <text x="430" y="252" font-size="13" fill="#6b5840">former ballplayer · current golfer</text>
+  <text x="430" y="252" font-size="13" fill="#6b5840">rec-league ballplayer · weekend golfer</text>
   <line x1="430" y1="278" x2="780" y2="278" stroke="#2b1d12" stroke-width="2"/>
   <text x="430" y="304" font-size="11" fill="#6b5840" letter-spacing="2">▸ FILE: about-me.card</text>
   <text x="430" y="324" font-size="11" fill="#6b5840" letter-spacing="2">▸ TYPE: hypercard 1.0</text>
