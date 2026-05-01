@@ -3,7 +3,9 @@
   <rect width="418" height="170" fill="#fbe9d7" stroke="#2b1d12" stroke-width="3"/>
   <rect width="418" height="26" fill="#2b1d12"/>
   <text x="14" y="19" font-size="12" fill="#fbe9d7" letter-spacing="1">▸ now listening</text>
-  <text x="408" y="19" font-size="9" fill="#fbe9d7" text-anchor="end" letter-spacing="0.5">awaiting first refresh</text>
-  <text x="20" y="62" font-size="13" fill="#6b5840" font-style="italic">(no recent listens)</text>
+  <text x="408" y="19" font-size="9" fill="#fbe9d7" text-anchor="end" letter-spacing="0.5">refreshed 2026-05-01</text>
+  <text x="20" y="62" font-size="13"><tspan font-weight="700" fill="#2b1d12">Flatbush ZOMBiES</tspan><tspan fill="#2b1d12"> — </tspan><tspan fill="#2b1d12" font-style="italic">A Spike Lee Joint (feat. Anthony Flammia)</tspan><tspan fill="#6b5840"> · played 2 days ago</tspan></text>
+  <text x="20" y="92" font-size="13"><tspan fill="#6b5840" font-style="italic">top of the week: </tspan><tspan font-weight="700" fill="#2b1d12">Denzel Curry</tspan><tspan fill="#6b5840"> (22 plays)</tspan></text>
+
   <text x="20" y="158" font-size="10" fill="#6b5840" letter-spacing="1">↗ /music</text>
 </svg>

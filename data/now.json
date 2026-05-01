@@ -1,1 +1,13 @@
-{"writing":[],"listening":[],"updatedAt":null}
+{
+  "posts": [],
+  "listen": {
+    "artist": "Flatbush ZOMBiES",
+    "track": "A Spike Lee Joint (feat. Anthony Flammia)",
+    "playedAtUts": 1777481626
+  },
+  "topArtist": {
+    "name": "Denzel Curry",
+    "playcount": 22
+  },
+  "updatedAt": "2026-05-01T21:43:07.884Z"
+}
