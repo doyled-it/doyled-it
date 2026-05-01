@@ -1,0 +1,16 @@
+{
+  "name": "doyled-it-profile",
+  "version": "1.0.0",
+  "description": "GitHub profile README for doyled-it.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "update-now": "node scripts/update-now.mjs",
+    "pack-sprite": "node scripts/pack-sprite.mjs",
+    "test": "node --test 'tests/**/*.test.mjs'"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  }
+}
