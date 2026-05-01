@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 96" width="880" height="96"
+     font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace">
+  <rect x="12" y="10" width="864" height="80" fill="#2b1d12"/>
+  <rect x="4" y="2" width="864" height="80" fill="#fbe9d7" stroke="#2b1d12" stroke-width="4"/>
+
+  <g id="tiles" transform="translate(20, 14)">
+    <!-- python -->
+    <g transform="translate(0,0)">
+      <rect x="0" y="0" width="160" height="56" fill="#ffffff" stroke="#2b1d12" stroke-width="3"/>
+      <text x="80" y="34" font-size="14" text-anchor="middle" fill="#2b1d12">python</text>
+    </g>
+    <!-- typescript -->
+    <g transform="translate(168,0)">
+      <rect x="0" y="0" width="160" height="56" fill="#ffffff" stroke="#2b1d12" stroke-width="3"/>
+      <text x="80" y="34" font-size="14" text-anchor="middle" fill="#2b1d12">typescript</text>
+    </g>
+    <!-- rust -->
+    <g transform="translate(336,0)">
+      <rect x="0" y="0" width="160" height="56" fill="#ffffff" stroke="#2b1d12" stroke-width="3"/>
+      <text x="80" y="34" font-size="14" text-anchor="middle" fill="#2b1d12">rust</text>
+    </g>
+    <!-- langgraph -->
+    <g transform="translate(504,0)">
+      <rect x="0" y="0" width="160" height="56" fill="#ffffff" stroke="#2b1d12" stroke-width="3"/>
+      <text x="80" y="34" font-size="14" text-anchor="middle" fill="#2b1d12">langgraph</text>
+    </g>
+    <!-- cloudflare -->
+    <g transform="translate(672,0)">
+      <rect x="0" y="0" width="160" height="56" fill="#ffffff" stroke="#2b1d12" stroke-width="3"/>
+      <text x="80" y="34" font-size="14" text-anchor="middle" fill="#2b1d12">cloudflare</text>
+    </g>
+  </g>
+</svg>
